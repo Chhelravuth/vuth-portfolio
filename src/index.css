@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-body bg-white text-zinc-900 antialiased dark:bg-dark-bg dark:text-zinc-100;
+  }
+}
+
+@layer components {
+  .chip {
+    @apply inline-flex items-center rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1.5 text-xs font-medium
+      text-zinc-700 transition-all duration-200 dark:border-dark-border dark:bg-dark-card dark:text-zinc-300;
+  }
+
+  .chip-design {
+    @apply border-violet-500/30 bg-violet-500/10 text-violet-700 dark:text-violet-300;
+  }
+
+  .chip-code {
+    @apply border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300;
+  }
+
+  .chip-framework {
+    @apply border-brand-500/30 bg-brand-500/10 text-brand-600 dark:text-brand-400;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-6 py-3 text-sm font-semibold
+      text-white shadow-lg shadow-brand-500/25 transition-all hover:bg-brand-600 hover:shadow-brand-500/40
+      active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-200 bg-transparent px-6 py-3
+      text-sm font-semibold text-zinc-700 transition-all hover:border-brand-500/50 hover:bg-brand-500/5
+      dark:border-dark-border dark:text-zinc-200 dark:hover:border-brand-500/50;
+  }
+
+  .section-heading {
+    @apply font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl;
+  }
+
+  .section-sub {
+    @apply mt-3 max-w-2xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400;
+  }
+}
