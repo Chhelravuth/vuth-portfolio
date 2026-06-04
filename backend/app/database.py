@@ -1,40 +1,20 @@
 import os
-from pathlib import Path
 from sqlalchemy import create_engine
-from sqlalchemy.orm import DeclarativeBase, sessionmaker
-from dotenv import load_dotenv
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
-# ឡូដទិន្នន័យពីឯកសារ .env
-load_dotenv()
+# ១. ទាញយក Connection String ពី Environment Variable របស់ Render
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-# ទាញយក Link របស់ Supabase (បើគ្មាន ឱ្យរត់ទៅរក SQLite ក្នុងម៉ាស៊ីនសិន)
-DB_PATH = Path(__file__).resolve().parent.parent / "portfolio.db"
-DEFAULT_SQLITE = f"sqlite:///{DB_PATH}"
-DATABASE_URL = os.getenv("DATABASE_URL", DEFAULT_SQLITE)
+# ២. ប្រព័ន្ធការពារ៖ បើសិនជា Render ផ្ដល់លីង Supabase ដែលផ្ដើមដោយ postgres:// 
+# យើងត្រូវដូរវាទៅជា postgresql:// ឱ្យត្រូវស្តង់ដារ SQLAlchemy 2.0 ដាច់ខាត
+if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
-# បង្កើត Engine ឱ្យត្រូវតាមប្រភេទ Database
-if DATABASE_URL.startswith("postgresql://") or DATABASE_URL.startswith("postgres://"):
-    # កែទម្រង់ postgres:// ទៅជា postgresql:// ព្រោះ SQLAlchemy តម្រូវការបែបនេះ
-    if DATABASE_URL.startswith("postgres://"):
-        DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
-    engine = create_engine(DATABASE_URL)
-else:
-    engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+# ៣. បង្កើត Engine ដោយសុវត្ថិភាព (ករណីគ្មានលីង ឱ្យវាហៅ SQLite បណ្ដោះអាសន្នកុំឱ្យ Server ងាប់)
+if not DATABASE_URL:
+    DATABASE_URL = "sqlite:///./test.db"
 
+engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-class Base(DeclarativeBase):
-    pass
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-
-class Base(DeclarativeBase):
-    pass
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+Base = declarative_base()
