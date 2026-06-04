@@ -47,33 +47,32 @@ export default function HeroSection() {
               </span>
               {profile.availability}
             </motion.div>
-</motion.div>
 
-        {/* 📸 ចាប់ផ្ដើមដុំកូដរូបថតរបស់បង Chhel Ravuth */}
-        <motion.div
-          custom={0.5}
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          className="mb-6 inline-block"
-        >
-          <img 
-            src="../../../assets/me.png"
-            alt="Chhel Ravuth" 
-            className="w-32 h-32 md:w-36 md:h-36 rounded-full object-cover border-4 border-brand-500 shadow-xl"
-          />
-        </motion.div>
-        {/* 📸 ចប់ដុំកូដរូបថត */}
+            {/* 📸 ចាប់ផ្ដើមដុំកូដរូបថតរបស់បង Chhel Ravuth */}
+            <motion.div
+              custom={0.5}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              className="mb-6 inline-block"
+            >
+              <img
+                src="/me.png"
+                alt="Chhel Ravuth"
+                className="w-32 h-32 md:w-36 md:h-36 rounded-full object-cover border-4 border-brand-500 shadow-xl"
+              />
+            </motion.div>
+            {/* 📸 ចប់ដុំកូដរូបថត */}
 
-        <motion.p
-          custom={1}
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          className="font-display text-sm font-medium uppercase tracking-[0.28em] text-zinc-500"
-        >
-          Hello, everyone that hear me – I'm vuth
-        </motion.p>
+            <motion.p
+              custom={1}
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              className="font-display text-sm font-medium uppercase tracking-[0.28em] text-zinc-500"
+            >
+              Hello, everyone that hear me – I'm vuth
+            </motion.p>
             <motion.h1
               custom={2}
               variants={fadeUp}
