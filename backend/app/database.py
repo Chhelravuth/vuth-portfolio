@@ -12,9 +12,12 @@ if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
 # ៣. បង្កើត Engine ដោយសុវត្ថិភាព (ករណីគ្មានលីង ឱ្យវាហៅ SQLite បណ្ដោះអាសន្នកុំឱ្យ Server ងាប់)
-if not DATABASE_URL:
-    DATABASE_URL = "sqlite:///./test.db"
+# ៣. បង្កើត Engine ដោយសុវត្ថិភាព (បើតម្លៃទទេ ឬគ្មានលីង ឱ្យវាហៅ SQLite កុំឱ្យ Server ងាប់)
+db_url = DATABASE_URL
+if not db_url:
+    db_url = "sqlite:///./portfolio.db"
 
-engine = create_engine(DATABASE_URL)
+# ហៅ Engine ដោយប្រើប្រាស់ db_url ដែលមានប្រព័ន្ធការពាររួចរាល់
+engine = create_engine(db_url)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
