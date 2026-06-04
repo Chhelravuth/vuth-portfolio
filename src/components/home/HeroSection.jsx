@@ -57,7 +57,7 @@ export default function HeroSection() {
               className="mb-6 inline-block"
             >
               <img
-                src="/me.PNG"
+                src="/vuth.png"
                 alt="Chhel Ravuth"
                 className="w-32 h-32 md:w-36 md:h-36 rounded-full object-cover border-4 border-brand-500 shadow-xl"
               />
