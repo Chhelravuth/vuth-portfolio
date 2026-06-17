@@ -57,7 +57,7 @@ export default function HeroSection() {
               className="mb-6 inline-block"
             >
               <img
-                src="/vuth.png"
+                src="/vuthDev.png"
                 alt="Chhel Ravuth"
                 className="w-32 h-32 md:w-36 md:h-36 rounded-full object-cover border-4 border-brand-500 shadow-xl"
               />
@@ -162,7 +162,10 @@ export default function HeroSection() {
               {stats.map((stat) => (
                 <motion.div
                   key={stat.label}
-                  whileHover={{ y: -4, borderColor: "rgba(14, 15, 15, 0.45)" }}
+                  whileHover={{
+                    y: -4,
+                    borderColor: "rgba(81, 197, 197, 0.45)",
+                  }}
                   className="rounded-xl border border-zinc-200/80 bg-white/70 p-4 backdrop-blur-md dark:border-dark-border dark:bg-dark-card/70"
                 >
                   <p className="font-display text-2xl font-bold text-brand-500">
